@@ -175,8 +175,13 @@ img {
 /* Hero Section */
 .hero {
     position: relative;
-    /* 👇 Sri Lankan Tropical Beach Background Image 👇 */
     background-image: url('../images/beach-bg.jpg');
+    
+    /* 🏖️ Image එක දෙපැත්තටම Full Fit කරලා Center කිරීමට: */
+    background-position: center center;
+    background-size: cover;            /* Image එක නොකැඩී මුළු Screen එකටම Fit වේ */
+    background-repeat: no-repeat;
+
     min-height: 85vh;
     display: flex;
     align-items: center;
@@ -185,27 +190,28 @@ img {
     overflow: hidden;
 }
 
-/* Dark Green + Slate Shade Overlay (Text & Agency Photo එක ලස්සනට පෙනෙන්න) */
+/* Clearer & Light Emerald Overlay Shade (Beach Photo එක ගොඩක් පැහැදිලිව පෙනීමට) */
 .hero-overlay {
     position: absolute;
     top: 0; 
     left: 0; 
     width: 100%; 
     height: 100%;
-    /* Deep Emerald Green (#025940) සහ Dark Slate overlay blend එක */
+    
+    /* Opacity එක 0.85 සිට 0.45-0.55 දක්වා අඩු කර clear කරන ලදී */
     background: linear-gradient(
         135deg, 
-        rgba(15, 23, 42, 0.88) 0%, 
-        rgba(2, 89, 64, 0.82) 50%, 
-        rgba(15, 23, 42, 0.90) 100%
+        rgba(15, 23, 42, 0.55) 0%, 
+        rgba(2, 89, 64, 0.45) 50%, 
+        rgba(15, 23, 42, 0.60) 100%
     );
     pointer-events: none;
 }
 
-.hero-container {
-    position: relative;
-    z-index: 10;
-    width: 100%;
+/* Background එක Clear නිසා Text එකත් 100% පැහැදිලිව පෙනීමට Text Shadow එකක් */
+.hero-content h1, 
+.hero-content p {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 /* 1/3 (Left Image) + 2/3 (Right Text) Grid Layout */
