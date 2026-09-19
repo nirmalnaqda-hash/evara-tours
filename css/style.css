@@ -176,7 +176,7 @@ img {
 .hero {
     position: relative;
     /* 👇 Sri Lankan Tropical Beach Background Image 👇 */
-    background-image: url('../images/beach-bg.jpg'); center/cover no-repeat attachment-fixed;
+    background-image: url('../images/beach-bg.jpg');
     min-height: 85vh;
     display: flex;
     align-items: center;
