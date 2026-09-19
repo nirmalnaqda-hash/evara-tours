@@ -175,11 +175,19 @@ img {
 /* Hero Section */
 .hero {
     position: relative;
-    background-image: url('../images/beach-bg.jpg');
     
-    /* 🏖️ Image එක දෙපැත්තටම Full Fit කරලා Center කිරීමට: */
+    /* 🏖️ Beach Image එක උඩින් විතරක් Shade එක වැටෙන සේ Direct CSS Blend කිරීම: */
+    background-image: 
+        linear-gradient(
+            135deg, 
+            rgba(15, 23, 42, 0.65) 0%, 
+            rgba(2, 89, 64, 0.50) 50%, 
+            rgba(15, 23, 42, 0.70) 100%
+        ), 
+        url('../images/beach-bg.jpg');
+    
     background-position: center center;
-    background-size: cover;            /* Image එක නොකැඩී මුළු Screen එකටම Fit වේ */
+    background-size: cover;
     background-repeat: no-repeat;
 
     min-height: 85vh;
@@ -190,22 +198,16 @@ img {
     overflow: hidden;
 }
 
-/* Clearer & Light Emerald Overlay Shade (Beach Photo එක ගොඩක් පැහැදිලිව පෙනීමට) */
+/* කලින් තිබුනු Extra overlay div එක මගහැරීමට (Hide කිරීමට): */
 .hero-overlay {
-    position: absolute;
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%;
-    
-    /* Opacity එක 0.85 සිට 0.45-0.55 දක්වා අඩු කර clear කරන ලදී */
-    background: linear-gradient(
-        135deg, 
-        rgba(15, 23, 42, 0.55) 0%, 
-        rgba(2, 89, 64, 0.45) 50%, 
-        rgba(15, 23, 42, 0.60) 100%
-    );
-    pointer-events: none;
+    display: none;
+}
+
+/* Front Content strictly on top */
+.hero-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
 }
 
 /* Background එක Clear නිසා Text එකත් 100% පැහැදිලිව පෙනීමට Text Shadow එකක් */
