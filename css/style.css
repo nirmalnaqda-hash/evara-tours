@@ -175,56 +175,58 @@ img {
 /* Hero Section */
 .hero {
     position: relative;
-    
-    /* 🏖️ Beach Image එක උඩින් විතරක් Shade එක වැටෙන සේ Direct CSS Blend කිරීම: */
-    background-image: 
-        linear-gradient(
-            135deg, 
-            rgba(15, 23, 42, 0.65) 0%, 
-            rgba(2, 89, 64, 0.50) 50%, 
-            rgba(15, 23, 42, 0.70) 100%
-        ), 
-        url('../images/beach-bg.jpg');
-    
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
-
     min-height: 85vh;
     display: flex;
     align-items: center;
     color: var(--white);
     padding: 60px 0;
     overflow: hidden;
+    background-color: #0f172a; /* Fallback background */
 }
 
-/* කලින් තිබුනු Extra overlay div එක මගහැරීමට (Hide කිරීමට): */
+/* Layer 1: Beach Background Image (z-index: 1) */
+.hero-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url('../images/beach-bg.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 1; /* යටම Layer එක */
+}
+
+/* Layer 2: Green Shade Overlay (z-index: 2 - Beach Image එක උඩ විතරක් වැටේ) */
 .hero-overlay {
-    display: none;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* Dark Slate (#0f172a) and Deep Emerald Green (#025940) Transparent Shade */
+    background: linear-gradient(
+        135deg, 
+        rgba(15, 23, 42, 0.65) 0%, 
+        rgba(2, 89, 64, 0.50) 50%, 
+        rgba(15, 23, 42, 0.70) 100%
+    );
+    z-index: 2; /* මැද Layer එක */
+    pointer-events: none;
 }
 
-/* Front Content strictly on top */
+/* Layer 3: Main Foreground Content (z-index: 10 - උඩම Layer එක) */
 .hero-container {
     position: relative;
-    z-index: 10;
+    z-index: 10; /* Shade එකට උඩින් 100% Bright එකට Display වේ */
     width: 100%;
 }
 
-/* Background එක Clear නිසා Text එකත් 100% පැහැදිලිව පෙනීමට Text Shadow එකක් */
-.hero-content h1, 
-.hero-content p {
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-}
-
-/* 1/3 (Left Image) + 2/3 (Right Text) Grid Layout */
+/* 1/3 (Left Image) + 2/3 (Right Text) Layout */
 .hero-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* Left 1/3 Part, Right 2/3 Parts */
+    grid-template-columns: 1fr 2fr;
     gap: 40px;
     align-items: center;
 }
 
-/* Left Image Box Styling */
 .hero-image-wrapper {
     width: 100%;
     height: 100%;
@@ -238,7 +240,7 @@ img {
     max-height: 480px;
     object-fit: cover;
     border-radius: var(--border-radius);
-    border: 2px solid var(--gold); /* Ceylon Gold border */
+    border: 2px solid var(--gold);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     transition: var(--transition);
 }
@@ -248,12 +250,11 @@ img {
     box-shadow: 0 25px 50px rgba(212, 175, 55, 0.4);
 }
 
-/* Right Content Adjustments */
 .hero-content {
     max-width: 100%;
 }
 
-/* Mobile & Tablet Responsive Layout */
+/* Responsive Mobile Layout */
 @media (max-width: 992px) {
     .hero-grid {
         grid-template-columns: 1fr;
